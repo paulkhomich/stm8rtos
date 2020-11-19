@@ -9,7 +9,7 @@ all: $(SRC)
 dump:
 	stm8-objdump -D -mstm8 ./build/kernel.ihx
 
-backup:
+backup: $(SRC)
 	mkdir -p backup
 	cp *.s backup/
 

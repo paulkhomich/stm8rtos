@@ -8,6 +8,8 @@
 			.area CONSTANTS
 		.area CODE
 			.area KERNEL
+				.area PROCEDURES
+				.area MAIN
 			.area TASKS
 
 .area DATA
@@ -21,6 +23,9 @@
 
 .area CODE
 .area KERNEL
+.area PROCEDURES
+.include "queue.s"
+.area MAIN
 Main:
 	NOP
 	NOP
