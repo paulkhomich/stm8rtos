@@ -36,4 +36,4 @@ PTimersInitLoop:
 	DECW Y
 	JRA PTimersInitLoop
 PTimersInitEnd:
-	JRA Main	
+	JP Main	

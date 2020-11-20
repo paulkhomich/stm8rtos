@@ -28,6 +28,7 @@
 .include "init.s"
 .area PROCEDURES
 .include "queue.s"
+.include "ptimers.s"
 .area MAIN
 Main:
 	NOP
