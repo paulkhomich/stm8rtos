@@ -1,0 +1,5 @@
+Idle::
+	NOP
+	NOP
+	RET
+

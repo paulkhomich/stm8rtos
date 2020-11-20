@@ -1,4 +1,4 @@
-Init:
+Init::
 	MOV QueueSize,		#0x0
 	MOV QueuePtr,		#0x0
 	MOV QueueOverflow,	#0x0
@@ -19,7 +19,7 @@ QueueInitLoop:
 	LD (X), A
 	INCW X
 	DECW Y
-	JP QueueInitLoop
+	JRA QueueInitLoop
 QueueInitEnd:
 	 
 	;PTimers init all items with {0xFF,0xFF,0xFF}
@@ -34,6 +34,6 @@ PTimersInitLoop:
 	INCW X
 	LD (X), A
 	DECW Y
-	JP PTimersInitLoop
+	JRA PTimersInitLoop
 PTimersInitEnd:
-	JP Main	
+	JRA Main	

@@ -4,10 +4,11 @@
 		.area SSEG
 		.area HOME
 			.area VECTORS
-			.area INIT
+			.area TASKSTABLE
 			.area CONSTANTS
 		.area CODE
 			.area KERNEL
+				.area INIT
 				.area PROCEDURES
 				.area MAIN
 			.area TASKS
@@ -18,15 +19,20 @@
 .area HOME
 .area VECTORS
 .include "vectors.s"
-.area INIT
-.include "init.s"
+.area TASKSTABLE
+.include "table.s"
 
 .area CODE
 .area KERNEL
+.area INIT
+.include "init.s"
 .area PROCEDURES
 .include "queue.s"
 .area MAIN
 Main:
 	NOP
 	NOP
-	JP Main
+	JRA Main
+
+.area TASKS
+.include "tasks.s"

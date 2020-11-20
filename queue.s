@@ -2,7 +2,7 @@
 ; Add Task to Queue
 ; A <- Task Num.
 ;---------------------------------------
-AddToQueue:
+AddTask::
 	;Save A(num) & X register
 	PUSHW X
 	PUSH A
@@ -16,7 +16,7 @@ QueueFull:
 	POPW X
 	RET	
 QueueHaveSpace:
-	LDW X, #0x0000
+	CLRW X
 	ADDW X, QueuePtr
 	ADDW X, QueueSize
 	SUBW X, #QUEUE_CAPACITY
@@ -34,19 +34,19 @@ QueueCircle:
 	RET
 
 ;---------------------------------------
-; Delete From Queue
+; Remove From Queue
 ;---------------------------------------
-DeleteFromQueue:
+RemoveTask::
 	;Save A
 	PUSH A
 	;Ptr >>> 1
 	LD A, QueuePtr
 	INC A
 	SUB A, #QUEUE_CAPACITY
-	JREQ DeleteFromQueueCircle
-DeleteFromQueueLinear:
+	JREQ RemoveTaskCircle
+RemoveTaskLinear:
 	ADD A, #QUEUE_CAPACITY
-DeleteFromQueueCircle:
+RemoveTaskCircle:
 	;Now save new Ptr
 	LD QueuePtr, A
 	DEC QueueSize
@@ -55,7 +55,32 @@ DeleteFromQueueCircle:
 
 	RET
 	
-	
+;---------------------------------------
+; Run Task
+; A <- Task Num.
+;---------------------------------------
+RunTask::
+	;Save A & Y
+	PUSH A
+	PUSHW Y
+	;Find Task addr. by num. 
+	;x2 (2-bit addr.)
+	SLL A
+	CLRW Y
+	LD YL, A
+	;Load H
+	LD A, (#TasksTable, Y)
+	LD XH, A
+	;Load L
+	INCW Y
+	LD A, (#TasksTable, Y)
+	LD XL, A
+	;Now in X - task addr.
+	;Restore A & Y
+	POPW Y
+	POP A
+	;Go to task
+	JP (X)		
 
 
 
