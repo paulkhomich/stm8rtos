@@ -5,8 +5,8 @@
 ;---------------------------------------
 TasksTable:
 	.dw Idle
-	.dw Idle
-	.dw Idle
+	.dw Light 
+	.dw Idle 
 	.dw Idle
 	.dw Idle
 	.dw Idle

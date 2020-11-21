@@ -23,3 +23,7 @@
 .gblequ TIM2_PSCR,      0x530C
 .gblequ TIM2_ARRH,      0x530D
 .gblequ TIM2_ARRL,      0x530E
+
+.gblequ PE_ODR,         0x5014
+.gblequ PE_DDR,         0x5016
+.gblequ PE_CR1,         0x5017

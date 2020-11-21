@@ -1,7 +1,7 @@
 SRC := $(wildcard *.s)
 
 all: $(SRC)
-	sdasstm8 -los kernel.s 
+	sdasstm8 -losy kernel.s 
 	sdcc -mstm8 kernel.rel
 	mkdir -p build
 	mv kernel.* build/
@@ -12,6 +12,10 @@ dump:
 backup: $(SRC)
 	mkdir -p backup
 	cp *.s backup/
+
+flash:
+	make all
+	stm8flash -c stlinkv2 -p stm8s105k4 -w ./build/kernel.ihx
 
 clean:
 	rm -rf build

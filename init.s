@@ -1,12 +1,5 @@
 Init::
-	;Init RAM
-	MOV QueueSize,		#0x0
-	MOV QueuePtr,		#0x0
-	MOV QueueOverflow,	#0x0
-
-	MOV PTimersSize,	#0x0
-	MOV PTimersOverflow,	#0x0
-	
+	;--------------------- HARDWARE ------------------------
 	;Init Interrupts
 	RIM
 
@@ -16,11 +9,24 @@ Init::
 	;Init TIM2 timer (for 1ms interval)
 	;16MHz ->(/8 prescale)-> 2MHz ->(/2k counter ARR)-> 1KHz
 	MOV TIM2_PSCR, #0x08		;Prescale = 8
-	MOV TIM2_ARRH, #0x07		;ARR=2000
+	MOV TIM2_ARRH, #0x07		;ARR=2000 (0x07)
 	MOV TIM2_ARRL, #0xD0
 	BSET TIM2_IER,  #0x0		;Interrupt Update ON
 	BSET TIM2_CR1,  #0x0		;Run TIM2
 
+	;Init LED
+	BSET PE_DDR, #0x5
+	BSET PE_CR1, #0x5
+
+	;--------------------- SOFTWARE ------------------------
+	;Init RAM
+	MOV QueueSize,		#0x0
+	MOV QueuePtr,		#0x0
+	MOV QueueOverflow,	#0x0
+
+	MOV PTimersSize,	#0x0
+	MOV PTimersOverflow,	#0x0
+	
 	;Stack init
 	LDW X, #RAMEND
 	LDW SP, X	

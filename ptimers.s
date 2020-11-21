@@ -111,6 +111,7 @@ Placing:
 	LD (X), A
 	PUSH A
 	;Place time H, L
+	INCW X
 	LD A, YH
 	LD (X), A
 	INCW X

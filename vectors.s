@@ -13,7 +13,7 @@ INT Init
 INT Init
 INT Init
 INT Init
-INT Init
+INT TIM2_Tick
 INT Init
 INT Init
 INT Init

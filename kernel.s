@@ -36,10 +36,11 @@
 .area MAIN
 Main:
 	NOP
-	NOP
+	CALL Light
+Lo:
 	NOP
 	CALL Supervisor
-	JRA Main
+	JRA Lo
 
 .area TASKS
 .include "tasks.s"
