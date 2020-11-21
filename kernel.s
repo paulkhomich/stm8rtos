@@ -10,6 +10,7 @@
 			.area KERNEL
 				.area INIT
 				.area PROCEDURES
+				.area INTERRUPTS
 				.area MAIN
 			.area TASKS
 
@@ -29,10 +30,15 @@
 .area PROCEDURES
 .include "queue.s"
 .include "ptimers.s"
+.include "supervisor.s"
+.area INTERRUPTS
+.include "interrupts.s"
 .area MAIN
 Main:
 	NOP
 	NOP
+	NOP
+	CALL Supervisor
 	JRA Main
 
 .area TASKS

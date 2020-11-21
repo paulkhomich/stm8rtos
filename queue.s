@@ -34,7 +34,7 @@ QueueCircle:
 	RET
 
 ;---------------------------------------
-; Remove From Queue
+; Remove From Queue (Shift)
 ;---------------------------------------
 RemoveTask::
 	;Save A
